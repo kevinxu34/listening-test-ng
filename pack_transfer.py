@@ -47,21 +47,21 @@ try:
     shutil.copyfile("docker-compose.yml",
                     os.path.join(base_dir, "docker-compose.yml"))
 
-    # print('Create tar file...')
-    # with tarfile.open(base_dir_tgz, "w:gz") as tar:
-    #         tar.add(base_dir, arcname=os.path.basename(base_dir))
+    print('Create tar file...')
+    with tarfile.open(base_dir_tgz, "w:gz") as tar:
+            tar.add(base_dir, arcname=os.path.basename(base_dir))
 
     # You may need to delete this
-    print('Transfer the files to server...')
-    print(os.getcwd())
-    subprocess.run(
-        f'scp -i .ssh/golisten_ssh_key.pem -r {base_dir}/* golistenadmin@golisten.ucd.ie:/home/golistenadmin/golisten/', shell=True)
+    # print('Transfer the files to server...')
+    # print(os.getcwd())
+    # subprocess.run(
+    #     f'scp -i .ssh/golisten_ssh_key.pem -r {base_dir}/* golistenadmin@golisten.ucd.ie:/home/golistenadmin/golisten/', shell=True)
 
-    print('Start ssh and run script...')
-    # subprocess.run('ssh -i ForStudy.pem ubuntu@63.34.10.16 "pip install tornado pymongo"')
-    # subprocess.run('ssh -i ForStudy.pem ubuntu@63.34.10.16 "sudo supervisorctl reload"')
-    subprocess.run(
-        'ssh -i .ssh/golisten_ssh_key.pem -t golistenadmin@golisten.ucd.ie "sudo supervisorctl restart golisten"', shell=True)
+    # print('Start ssh and run script...')
+    # # subprocess.run('ssh -i ForStudy.pem ubuntu@63.34.10.16 "pip install tornado pymongo"')
+    # # subprocess.run('ssh -i ForStudy.pem ubuntu@63.34.10.16 "sudo supervisorctl reload"')
+    # subprocess.run(
+    #     'ssh -i .ssh/golisten_ssh_key.pem -t golistenadmin@golisten.ucd.ie "sudo supervisorctl restart golisten"', shell=True)
     input('You can close the window now')
 
 except Exception as ex:
